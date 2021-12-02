@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProyectoFinalLaboIV.Models.Marca>
+
+@{
+    ViewData["Title"] = "Lista de Marcas";
+}
+
+<h2>Lista de Marcas</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear Marca</a>
+</p>
+<table class="table table-sm table-bordered text-center">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

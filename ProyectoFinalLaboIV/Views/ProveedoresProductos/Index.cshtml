@@ -1,0 +1,51 @@
+﻿@model ProyectoFinalLaboIV.Models.ViewModels.ProveedoresProductosViewModel
+
+@{
+    ViewData["Title"] = "Lista de Proveedores - Productos";
+}
+
+<h2>Lista de Proveedores - Productos</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear</a>
+</p>
+<div class="flex-row">
+    <form asp-action="Index" method="get" class="text-center">
+        <p>
+            Proveedor: <select class="form-select" aria-label="Default select example" name="busquedaProv" asp-items="@Model.Proveedores"><option value="Todas">Todas</option></select>
+            Producto: <select class="form-select" aria-label="Default select example" name="busquedaProd" asp-items="@Model.Productos"><option value="Todas">Todas</option></select>
+            <input type="submit" class="btn btn-secondary btn-sm" value="Filtrar" />
+        </p>
+
+    </form>
+</div>
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProveedoresProductos[0].Proveedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProveedoresProductos[0].Producto)
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ProveedoresProductos) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedor.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.Nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Detalles", "Details", new { ProveedorId = item.ProveedorId, ProductoId = item.ProductoId }, new { @class = "btn btn-info btn-sm" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
